@@ -1,6 +1,7 @@
 // import React from 'react'
-import { Link, useNavigate } from "react-router-dom";
+
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { register } from "../../redux/authSlice";
 
@@ -138,7 +139,7 @@ function Signup() {
           <p className="mt-10 text-center text-sm text-gray-500">
             Already have an account?{" "}
             <Link
-              to="/signup"
+              to="/login"
               className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
             >
               Login
