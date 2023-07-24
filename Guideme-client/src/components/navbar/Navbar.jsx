@@ -19,8 +19,7 @@ function Navbar() {
 
             <div className="relative">
               <label htmlFor="Search" className="sr-only">
-                {" "}
-                Search{" "}
+                Search
               </label>
 
               <input
@@ -72,15 +71,6 @@ function Navbar() {
                       className="text-gray-500 transition hover:text-gray-500/75"
                       href="/"
                     >
-                      Careers
-                    </a>
-                  </li>
-
-                  <li>
-                    <a
-                      className="text-gray-500 transition hover:text-gray-500/75"
-                      href="/"
-                    >
                       History
                     </a>
                   </li>
@@ -104,12 +94,13 @@ function Navbar() {
                   </li>
 
                   <li>
-                    <a
+                    <Link
+                      to="/upload"
                       className="text-gray-500 transition hover:text-gray-500/75"
                       href="/"
                     >
-                      Blog
-                    </a>
+                      Upload
+                    </Link>
                   </li>
                 </ul>
               </nav>
