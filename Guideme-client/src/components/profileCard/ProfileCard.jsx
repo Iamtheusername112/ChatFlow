@@ -1,10 +1,14 @@
 // import React from 'react'
 import avatar from "../../assets/images/avatar.jpg";
 import { Link } from "react-router-dom";
+import { format } from "timeago.js";
+import { useSelector } from "react-redux";
 
 function ProfileCard() {
+  const { user } = useSelector((state) => state.auth);
+
   return (
-    <div className="mt-14 m-40 shadow-xl overflow-hidden rounded-lg border border-gray-100">
+    <div className="mt-14 m-12 shadow-xl overflow-hidden rounded-lg border border-gray-100">
       <a
         href="#"
         className="relative block overflow-hidden rounded-lg border border-gray-100 p-4 sm:p-6 lg:p-8"
@@ -14,7 +18,7 @@ function ProfileCard() {
         <div className="sm:flex sm:justify-between sm:gap-4">
           <div>
             <h3 className="text-lg font-bold text-gray-900 sm:text-xl">
-              Welcome to GuideMe.
+              <span>Hi</span> {user.username} welcome to GuideMe.
             </h3>
           </div>
 
@@ -30,19 +34,19 @@ function ProfileCard() {
         <dl className="flex gap-4 sm:gap-6">
           <div className="flex flex-col-reverse">
             <dt className="text-sm font-medium text-gray-600"> Followers:</dt>
-            <dd className="text-xs text-gray-500">1231</dd>
+            <dd className="text-xs text-gray-500"> {user.followers.length} </dd>
           </div>
 
           <div className="flex flex-col-reverse">
             <dt className="text-sm font-medium text-gray-600">Followings:</dt>
-            <dd className="text-xs text-gray-500">23456</dd>
+            <dd className="text-xs text-gray-500">{user.followings.length}</dd>
           </div>
         </dl>
 
         <dl className="flex gap-4 mt-6 sm:gap-6">
           <div className="flex flex-col-reverse">
             <dt className="text-sm font-medium text-gray-600"> Created At:</dt>
-            <dd className="text-xs text-gray-500">31st June, 2021</dd>
+            <dd className="text-xs text-gray-500">{format(user.createdAt)} </dd>
           </div>
 
           <div className="flex flex-col-reverse">
@@ -51,7 +55,10 @@ function ProfileCard() {
           </div>
 
           <div className="flex flex-col-reverse">
-            <Link to="/" className="text-emerald-500 hover:text-red-400">
+            <Link
+              to={`/profileDetail/${user._id}`}
+              className="text-emerald-500 hover:text-red-400"
+            >
               My Profile
             </Link>
           </div>
