@@ -1,11 +1,16 @@
-// import React from 'react'
-import avatar from "../../assets/images/avatar.jpg";
+// import React from "react";
 import { Link } from "react-router-dom";
 import { format } from "timeago.js";
 import { useSelector } from "react-redux";
+import avatar from "../../assets/images/avatar.jpg";
 
 function ProfileCard() {
   const { user } = useSelector((state) => state.auth);
+
+  // If user data is not available, return null (don't render anything)
+  if (!user) {
+    return null;
+  }
 
   return (
     <div className="mt-14 m-12 shadow-xl overflow-hidden rounded-lg border border-gray-100">
@@ -33,8 +38,8 @@ function ProfileCard() {
 
         <dl className="flex gap-4 sm:gap-6">
           <div className="flex flex-col-reverse">
-            <dt className="text-sm font-medium text-gray-600"> Followers:</dt>
-            <dd className="text-xs text-gray-500"> {user.followers.length} </dd>
+            <dt className="text-sm font-medium text-gray-600">Followers:</dt>
+            <dd className="text-xs text-gray-500">{user.followers.length}</dd>
           </div>
 
           <div className="flex flex-col-reverse">
@@ -45,8 +50,8 @@ function ProfileCard() {
 
         <dl className="flex gap-4 mt-6 sm:gap-6">
           <div className="flex flex-col-reverse">
-            <dt className="text-sm font-medium text-gray-600"> Created At:</dt>
-            <dd className="text-xs text-gray-500">{format(user.createdAt)} </dd>
+            <dt className="text-sm font-medium text-gray-600">Created At:</dt>
+            <dd className="text-xs text-gray-500">{format(user.createdAt)}</dd>
           </div>
 
           <div className="flex flex-col-reverse">
