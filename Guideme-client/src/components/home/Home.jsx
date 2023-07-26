@@ -12,6 +12,7 @@ function Home() {
         <SuggestedUsers />
       </div>
       <Posts />
+
       <Rightside />
     </div>
   );
