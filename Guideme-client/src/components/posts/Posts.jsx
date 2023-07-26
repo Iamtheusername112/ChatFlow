@@ -39,6 +39,11 @@ function Posts() {
     }
   }, [token]);
 
+  // Function to handle post deletion and update the state
+  const handlePostDelete = (postId) => {
+    setPosts((prevPosts) => prevPosts.filter((post) => post._id !== postId));
+  };
+
   return (
     <div className="container mx-auto p-4 max-w-6xl">
       <h2 className="text-2xl font-bold mb-4 text-gray-900 text-center">
@@ -47,7 +52,7 @@ function Posts() {
       <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {posts?.map((post) => (
           <div key={post._id} className="flex w-full h-auto">
-            <Post post={post} />
+            <Post post={post} onDelete={handlePostDelete} />
           </div>
         ))}
       </div>

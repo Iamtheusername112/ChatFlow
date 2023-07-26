@@ -34,6 +34,7 @@ export const authSlice = createSlice({
         state.user.followings.push(action.payload);
       }
     },
+
     bookmarkPost(state, action) {
       if (
         state.user.bookmarkedPosts.some(

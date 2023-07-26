@@ -12,7 +12,7 @@ import Comment from "../comment/Comment";
 import { bookmarkPost } from "../../redux/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 
-const Post = ({ post }) => {
+const Post = ({ post, onDelete }) => {
   const { token, user } = useSelector((state) => state.auth);
   const [comments, setComments] = useState([]);
   const [commentText, setCommentText] = useState("");
@@ -52,7 +52,9 @@ const Post = ({ post }) => {
         },
         method: "DELETE",
       });
-      window.location.reload();
+
+      // Instead of reloading the page, call the callback to notify the parent component
+      onDelete(post._id);
     } catch (error) {
       console.error(error);
     }
@@ -129,7 +131,7 @@ const Post = ({ post }) => {
                 <p className="text-sm font-semibold text-gray-800 dark:text-white">
                   {post.user.username}
                 </p>
-                <p className="text-xs text-gray-500 dark:text-gray-400">
+                <p className="text-xs text-white dark:text-white">
                   {format(post.createdAt)}
                 </p>
               </div>
@@ -139,7 +141,7 @@ const Post = ({ post }) => {
             <HiOutlineDotsVertical
               size={25}
               onClick={() => setShowDeleteModal((prev) => !prev)}
-              className="cursor-pointer"
+              className="cursor-pointer text-white"
             />
           )}
         </div>
@@ -166,7 +168,7 @@ const Post = ({ post }) => {
         )}
         <p className="text-sm text-gray-800 dark:text-white">{post.desc}</p>
         {post?.location && (
-          <p className="text-xs text-gray-600 dark:text-gray-400 mb-3">
+          <p className="text-xs text-white dark:text-white mb-3">
             Location: {post.location}
           </p>
         )}
@@ -184,7 +186,7 @@ const Post = ({ post }) => {
         <div className="flex items-center space-x-4">
           <div
             className={`flex items-center space-x-1 cursor-pointer ${
-              isLiked ? "text-red-500" : "text-gray-500"
+              isLiked ? "text-red-500" : "text-white"
             }`}
             onClick={handleLikePost}
           >
@@ -194,7 +196,7 @@ const Post = ({ post }) => {
             </p>
           </div>
           <div
-            className="flex items-center space-x-1 cursor-pointer text-gray-500"
+            className="flex items-center  space-x-1 cursor-pointer text-white"
             onClick={() => setShowComment((prev) => !prev)}
           >
             <BiMessageRounded />
@@ -268,6 +270,7 @@ Post.propTypes = {
     photo: PropTypes.string,
     // Add other post properties here if needed...
   }).isRequired,
+  onDelete: PropTypes.func.isRequired, // Prop validation for the onDelete callback
 };
 
 export default Post;
