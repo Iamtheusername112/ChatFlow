@@ -1,12 +1,11 @@
-// import React from 'react'
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-import { useState } from "react";
-
 function Upload() {
   const [state, setState] = useState({});
-  const [photo, setPhoto] = useState("");
+  const [photo, setPhoto] = useState(null);
+  const [error, setError] = useState(false); // State to track the error status
   const { token } = useSelector((state) => state.auth);
   const navigate = useNavigate();
 
@@ -18,6 +17,13 @@ function Upload() {
 
   const handleCreatePost = async (e) => {
     e.preventDefault();
+
+    if (!photo) {
+      setError(true); // Set error state to true if no photo is selected
+      return;
+    }
+
+    setError(false); // Reset the error state if the user selects an image
 
     try {
       let filename = null;
@@ -77,6 +83,7 @@ function Upload() {
                 placeholder="title"
                 onChange={handleState}
                 className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                required // Marked as required
               />
             </div>
 
@@ -94,6 +101,7 @@ function Upload() {
                 placeholder="description"
                 onChange={handleState}
                 className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                required // Marked as required
               />
             </div>
 
@@ -111,6 +119,7 @@ function Upload() {
                 placeholder="location"
                 onChange={handleState}
                 className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                required // Marked as required
               />
             </div>
 
@@ -144,6 +153,13 @@ function Upload() {
                     </span>
                   </div>
                 </label>
+
+                {/* Error message */}
+                {error && (
+                  <p className="text-red-600 text-sm mt-2">
+                    Please upload a photo!
+                  </p>
+                )}
               </div>
             </div>
 

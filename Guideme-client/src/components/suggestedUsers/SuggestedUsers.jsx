@@ -6,6 +6,7 @@ import avatar from "../../assets/images/avatar.jpg";
 import { SlLike } from "react-icons/sl";
 // import ThirdCard from "../card3/ThirdCard";
 import Posts from "../posts/Posts";
+import Rightside from "../rightside/Rightside";
 
 function SuggestedUsers() {
   const [suggestedUsers, setSuggestedUsers] = useState([]);
@@ -131,8 +132,9 @@ function SuggestedUsers() {
             href="#"
             className="block bg-gray-800 text-white text-center font-bold py-2"
           >
-            See all notifications
+            See all Friends
           </a>
+          <Rightside />
         </div>
 
         {/* Posts Card */}
