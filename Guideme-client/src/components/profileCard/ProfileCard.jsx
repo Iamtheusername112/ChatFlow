@@ -37,15 +37,21 @@ function ProfileCard() {
         </div>
 
         <dl className="flex gap-4 sm:gap-6">
-          <div className="flex flex-col-reverse">
-            <dt className="text-sm font-medium text-gray-600">Followers:</dt>
-            <dd className="text-xs text-gray-500">{user.followers.length}</dd>
-          </div>
+          {user.followers && (
+            <div className="flex flex-col-reverse">
+              <dt className="text-sm font-medium text-gray-600">Followers:</dt>
+              <dd className="text-xs text-gray-500">{user.followers.length}</dd>
+            </div>
+          )}
 
-          <div className="flex flex-col-reverse">
-            <dt className="text-sm font-medium text-gray-600">Followings:</dt>
-            <dd className="text-xs text-gray-500">{user.followings.length}</dd>
-          </div>
+          {user.followings && (
+            <div className="flex flex-col-reverse">
+              <dt className="text-sm font-medium text-gray-600">Followings:</dt>
+              <dd className="text-xs text-gray-500">
+                {user.followings.length}
+              </dd>
+            </div>
+          )}
         </dl>
 
         <dl className="flex gap-4 mt-6 sm:gap-6">
