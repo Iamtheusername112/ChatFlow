@@ -1,7 +1,17 @@
 import avatar from "../../assets/images/avatar.jpg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { logout } from "../../redux/authSlice";
 
 function Navbar() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate("/login");
+  };
+
   return (
     <div>
       <header className="bg-white">
@@ -121,6 +131,15 @@ function Navbar() {
                     className="rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600"
                   >
                     Register
+                  </Link>
+                </div>
+                <div className="hidden sm:flex">
+                  <Link
+                    to="/login"
+                    className="rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600"
+                    onClick={handleLogout}
+                  >
+                    Logout
                   </Link>
                 </div>
               </div>
