@@ -1,12 +1,31 @@
 import { useState } from "react";
+import axios from "axios";
 
-function Register() {
+function Register(ev) {
+  ev.preventDefault();
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // console.log(username);
-  // console.log(email);
-  // console.log(password);
+
+  // Axios request to the api
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      // Axios request to the API
+      const response = await axios.post("http://localhost:6500/register", {
+        username,
+        email,
+        password,
+      });
+
+      // Handle the response, e.g., show a success message
+      console.log("Registration successful:", response.data);
+    } catch (error) {
+      // Handle errors, e.g., display an error message
+      console.error("Registration error:", error);
+    }
+  };
 
   return (
     <div>
