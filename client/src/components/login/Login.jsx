@@ -1,4 +1,6 @@
-function Login() {
+import PropTypes from "prop-types";
+
+function Login({ toggleForm }) {
   return (
     <div className="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
       <div className="relative py-3 sm:max-w-xl sm:mx-auto">
@@ -52,6 +54,9 @@ function Login() {
                   <button className="bg-blue-500 text-white rounded-md px-2 py-1">
                     Submit
                   </button>
+                  <button onClick={toggleForm} className="text-blue-500 ml-2">
+                    Do not have an account? Sign Up
+                  </button>
                 </div>
               </div>
             </div>
@@ -61,5 +66,9 @@ function Login() {
     </div>
   );
 }
+
+Login.propTypes = {
+  toggleForm: PropTypes.func.isRequired, // Validate that toggleForm is a required function prop
+};
 
 export default Login;
