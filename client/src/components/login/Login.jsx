@@ -1,6 +1,12 @@
+import { useState } from "react";
+
 import PropTypes from "prop-types";
 
 function Login({ toggleForm }) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  console.log(email);
   return (
     <div className="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
       <div className="relative py-3 sm:max-w-xl sm:mx-auto">
@@ -8,16 +14,14 @@ function Login({ toggleForm }) {
         <div className="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
           <div className="max-w-md mx-auto">
             <div>
-              <h1 className="text-2xl font-semibold">
-                Register an account now!
-              </h1>
+              <h1 className="text-2xl font-semibold">Log into your account!</h1>
             </div>
             <div className="divide-y divide-gray-200">
               <div className="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
                 <div className="relative">
                   <input
-                    // value={email}
-                    // onChange={(e) => setEmail(e.target.value)}
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     autoComplete="off"
                     id="email"
                     name="email"
@@ -34,8 +38,8 @@ function Login({ toggleForm }) {
                 </div>
                 <div className="relative">
                   <input
-                    // value={password}
-                    // onChange={(e) => setPassword(e.target.value)}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                     autoComplete="off"
                     id="password"
                     name="password"
