@@ -1,14 +1,16 @@
 import "./App.css";
-import Register from "./components/Register";
-import axios from "axios";
+// import Register from "./components/Register";
+
+import Login from "./components/login/Login";
+import Signup from "./components/signup/Signup";
 
 function App() {
-  axios.defaults.baseURL = "http://localhost:6500";
-  axios.defaults.withCredentials = true;
   return (
     <>
       <div>
-        <Register />
+        {/* <Register /> */}
+        <Login />
+        <Signup />
       </div>
     </>
   );
